@@ -3,8 +3,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
-  color: #0f172a; /* slate-900 */
+  font-family: "Inter", system-ui, "Segoe UI", Roboto, Arial, "Helvetica Neue", sans-serif;
   background: #ffffff;
   line-height: 1.6;
 }
@@ -73,17 +72,28 @@ body{
 .theme-icon{
   width:24px; height:24px; display:inline-block;
   background-color:var(--icon-muted);                 /* активный цвет */
-  -webkit-mask: url("assets/sun.png") no-repeat center / contain;
-          mask: url("assets/sun.png") no-repeat center / contain; /* СОЛНЦЕ по умолчанию */
+  mask-image: url("assets/sun.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
   transition: background-color .2s ease, transform .15s ease, mask-image .2s ease;
+}
+
+.theme-toggle .theme-icon{
+  /* … */
+  mask-image: url("assets/sun.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
 }
 .theme-toggle:hover .theme-icon{ transform:scale(1.06); background-color: var(--brand);}
 
 /* при клике превращаемся в ЛУНУ и меняем цвет иконки */
 .theme-toggle input:checked + .theme-icon{
   background-color:var(--icon-muted);                 /* активная луна фиолетовая */
-  -webkit-mask-image: url("assets/moon.png");
-          mask-image: url("assets/moon.png");    /* ЛУНА */
+
+  mask-image: url("assets/moon.png");
+    /* ЛУНА */
 }
 
 .theme-toggle:hover input:checked + .theme-icon{
@@ -213,10 +223,7 @@ html:has(#themeSwitch:checked){
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center;
-  -webkit-mask-image: url("assets/line.png"); /* для Safari/Chrome */
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center;
+  mask-image: url("assets/line.png"); /* для Safari/Chrome */
   margin-left: 0.35rem;
 }
 
@@ -252,7 +259,7 @@ html:has(#themeSwitch:checked){
 
 .info{
   font-size: 36px;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   font-weight: 500;
 }
 
@@ -347,7 +354,7 @@ input[name="slider"]{
 /* Слайды стопкой */
 .t-slide{
   position: absolute; inset: 0;
-  opacity: 0; pointer-events: none;
+  opacity:0; pointer-events:none; visibility:hidden;
   transition: opacity .35s ease;
 }
 
@@ -355,7 +362,7 @@ input[name="slider"]{
 #t-1:checked ~ .t-slides .s1,
 #t-2:checked ~ .t-slides .s2,
 #t-3:checked ~ .t-slides .s3{
-  opacity: 1; pointer-events: auto; position: relative;
+  opacity:1; visibility:visible; position:relative;
 }
 
 /* ТОЧКИ: внутри карточки, внизу слева */
@@ -483,7 +490,7 @@ input[name="slider"]{
   list-style: none;
 }
 
-.faq-item summary::-webkit-details-marker {
+.faq-item summary{
   display: none; /* убираем стандартный треугольник */
 }
 
@@ -758,12 +765,22 @@ input[name="slider"]{
     display: grid; place-items: center;
   }
   .theme-toggle .theme-icon{
-    width:30px; height:20px; background:#737272;
-    -webkit-mask:url("assets/sun.png") no-repeat center/contain;
-            mask:url("assets/sun.png") no-repeat center/contain;
+    width:30px; height:20px;
+    background:#737272;
+  
+    /* стандартные лонгхэнды */
+    mask-image: url("assets/sun.png");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
   }
+  
   html:has(#themeSwitch:checked) .theme-toggle .theme-icon{
-    -webkit-mask-image:url("assets/moon.png");
+    mask-image: url("assets/moon.png");
+  }
+  
+  html:has(#themeSwitch:checked) .theme-toggle .theme-icon{
+    mask-image:url("assets/moon.png");
             mask-image:url("assets/moon.png");
   }  
   
