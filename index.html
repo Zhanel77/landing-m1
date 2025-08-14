@@ -27,11 +27,11 @@
             <li><a href="#contact">Contacts</a></li>
           </ul>
         </nav>
+        <label class="theme-toggle" aria-label="Toggle dark mode">
+          <input id="themeSwitch" type="checkbox">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </label>
       </div>
-      <label class="theme-toggle" aria-label="Toggle dark mode">
-      <input id="themeSwitch" type="checkbox">
-      <span class="theme-icon" aria-hidden="true"></span>
-    </label>
     </div>
   </header>
 
@@ -121,8 +121,8 @@
     </div>
     <!-- Slide 1 -->
     <article class="testimonial t-slide s1" role="group" aria-roledescription="slide" aria-label="1 of 3">
-      <div>
-        <div aria-hidden="true">
+      <div class = "testimonial__body">
+        <div class="testimonial__stars" aria-hidden="true">
           <img src="assets/Stars.png" alt="5 out of 5 stars" height="20">
         </div>
         <p class="testimonial__text">Incredible attention to detail and professionalism. Our website turned out better than we imagined!</p>
@@ -137,8 +137,8 @@
 
     <!-- Slide 2 -->
     <article class="testimonial t-slide s2" role="group" aria-roledescription="slide" aria-label="2 of 3">
-      <div>
-        <div aria-hidden="true">
+      <div class = "testimonial__body">
+        <div class="testimonial__stars" aria-hidden="true">
           <img src="assets/StarsDaniel.png" alt="5 out of 5 stars" height="20">
         </div>
         <p class="testimonial__text">Reliable, efficient, and creative. The best experience we've had with a development team.</p>
@@ -153,8 +153,8 @@
 
     <!-- Slide 3 -->
     <article class="testimonial t-slide s3" role="group" aria-roledescription="slide" aria-label="3 of 3">
-      <div>
-        <div aria-hidden="true">
+      <div class = "testimonial__body">
+        <div class="testimonial__stars" aria-hidden="true">
           <img src="assets/Stars.png" alt="5 out of 5 stars" height="20">
         </div>
         <p class="testimonial__text">Seamless process and outstanding results! The team exceeded expectations at every step.</p>
@@ -168,7 +168,6 @@
     </article>
   </div>
 </section>
-
 
     <!-- ===== Projects teaser ===== -->
     <section class="section container projects-teaser" aria-labelledby="projects-title">
@@ -285,12 +284,10 @@
         </a>
         <a target="_blank" rel="noopener" href="https://linkedin.com">
           <img src = "assets/Social icon.png" alt = "" class="link-external"/>
-        </a>
-   
+        </a>   
         <a target="_blank" rel="noopener" href="https://facebook.com">
           <img src = "assets/facebook.png" alt = "" class="link-external"/>
-        </a>
-        
+        </a>        
         <a target="_blank" rel="noopener" href="https://github.com">
           <img src = "assets/github_icon.png" alt = "" class="link-external"/>
         </a>
