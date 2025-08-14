@@ -623,7 +623,8 @@ input[name="slider"]{
   .footer{ background:#1e1b4b; color:var(--ink); }
 }
 
-/* ==== Mobile layout (iPhone width ~375px) ==== */
+/* ==== Mobile layout (iPhone width ~375px) ====*/
+
 @media (max-width: 375px){
   .site{ margin-inline:0; }
   .container{ width:min(100%, calc(100% - 32px)); }
@@ -708,55 +709,5 @@ input[name="slider"]{
   .footer nav img{ width: 22px; height: 22px; }
 
   .header__row{ position: relative; z-index: 5; }
-  .menu-toggle{ display:inline-block; }                /* бургер виден */
-  
-  /* Выпадающее меню */
-  .nav{
-    position: fixed;            /* а не absolute внутри header-right */
-    top: 56px;                  /* под шапкой */
-    left: 16px;
-    right: 16px;                /* одинаковые поля */
-    background: var(--surface); /* или #111827, если нужна тёмная панель */
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-    padding: 12px 16px;         /* внутренние отступы */
-    display: none;              /* скрыто по умолчанию */
-    z-index: 9999;              /* поверх контента */
-  }
-  .nav{ position: fixed; padding-right: 64px; } 
-  /* Полупрозрачный фон под панелью */
-  .nav::before{
-    content:"";
-    position:absolute; inset:0;
-    background: rgba(0,0,0,.55);
-    backdrop-filter: blur(2px);
-  }
-
-  .nav a{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  .nav a:hover{ color:#a78bfa; }
-
-  /* Фиолетовая вертикальная «рейка» справа от панели */
-  .nav::after{
-    content:"";
-    position:absolute;
-    top:0; right:0; bottom:0;
-    width:64px;
-    background: var(--brand);
-    border-radius: 0 12px 12px 0;
-  }
-  .nav ul{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .nav-toggle:checked ~ .nav{ display:block; }
-}
+  .menu-toggle{ display:inline-block; }                /* бургер виден */ 
+} 
