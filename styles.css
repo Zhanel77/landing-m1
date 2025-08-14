@@ -46,6 +46,7 @@ a:focus, button:focus { outline: 3px solid #a78bfa; outline-offset: 2px; }
 body{ 
   background:var(--surface); 
   color:var(--ink); 
+
 }
 
 :root{
@@ -106,9 +107,10 @@ html:has(#themeSwitch:checked){
 
 /* ====== Layout ====== */
 .container{
-  width: min(var(--container), calc(100% - 48px));
+  width: min(var(--container), calc(100% - 10px));
   margin-inline: auto;
 }
+
 .section{ padding: 72px 0; }
 .section--tight{ padding: 56px 0; }
 
@@ -232,13 +234,20 @@ html:has(#themeSwitch:checked){
   color: var(--muted); 
 }
 .section__title{ text-align:center; font-size: 36px; margin: 10px 0 8px; }
-.section__desc{ text-align:center; color: var(--muted); max-width: 72ch; margin: 0 auto 36px; }
+.section__desc{ text-align:center; color: #535862; max-width: 62ch; margin: 0 auto 36px; font-size: 20px; }
 .grid-3{
   display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
 }
 .card{
-  background: var(--card); border:1px solid var(--border); border-radius: var(--radius);
-  padding: 24px; transition: box-shadow .2s ease, transform .05s ease;
+  background: var(--card); 
+  border-radius: var(--radius);
+  padding: 24px; 
+  transition: box-shadow .2s ease, transform .05s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* центр по горизонтали */
+  justify-content: center; /* центр по вертикали */
+  text-align: center;
 }
 .card:hover{ box-shadow: 0 6px 28px rgba(2,6,23,.08); transform: translateY(-1px); }
 .card__icon{ width:42px; height:42px; border-radius:12px; background: var(--brand); display:grid; place-items:center; color:#fff; margin-bottom:12px; font-weight:700;}
@@ -250,7 +259,7 @@ html:has(#themeSwitch:checked){
   display: grid;
   grid-template-columns: 1.25fr 0.95fr;
   align-items: stretch;
-  background: #5b21b6;
+  background: #53389E;
   color: #fff;
   border-radius: 24px;
   overflow: hidden;
@@ -263,9 +272,8 @@ html:has(#themeSwitch:checked){
   display: flex;
   flex-direction: column;
   justify-content: center;                /* вертикально по центру блока */
-  gap: 14px;                              /* отступы между звездами/текстом/подписью */
-  padding: 40px 40px 56px;                /* как в макете: больше воздуха слева/сверху */
-  max-width: 720px;                       /* чтобы строки переносились похожим образом */
+  gap: 6px;                              /* отступы между звездами/текстом/подписью */
+  padding: 20px 40px 56px;                /* как в макете: больше воздуха слева/сверху */                       /* чтобы строки переносились похожим образом */
 }
 .testimonial__text{ font-size: 30px; line-height: 1.28; margin: 0;}
 .testimonial small{ opacity:.9; }
@@ -277,11 +285,15 @@ html:has(#themeSwitch:checked){
 }
 .testimonial__stars{
   display: inline-block;
-  margin-bottom: 10px;                    /* расстояние между звёздами и заголовком */
+  line-height: 0;            /* убирает лишний воздух у <img> */
+  margin-top: 0;
+  padding-top: 0;  
 }
+
 .testimonial__stars img{
   display: block;
 }
+
 .testimonial__media img{
   width: 100%;
   height: 100%;
@@ -358,11 +370,11 @@ input[name="slider"]{
 
 /* ====== Projects teaser (Main) ====== */
 .projects-teaser .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.project-card{ background: var(--card); border:1px solid var(--border); }
+.project-card{ background: var(--card); }
 
 .project-card__body{ padding: 18px; }
-.project-card__meta{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing:.12em; }
-.project-card__title{ font-size: 20px; margin: 6px 0; display:flex; align-items:center; gap:6px; }
+.project-card__meta{ color: #6941C6; font-size: 12px; letter-spacing:.12em;font-weight: 700; }
+.project-card__title{ font-size: 20px; margin: 6px 0; display:flex; align-items:center; gap:6px;font-weight: 500; }
 .project-card__desc{ color: var(--muted); font-size: 15px; }
 .project-card a:hover .project-card__title{ color: var(--brand-600); }
 
