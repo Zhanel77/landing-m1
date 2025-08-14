@@ -7,9 +7,12 @@
   <title>Applet — Projects</title>
   <meta name="description" content="A portfolio of websites and applications we’ve delivered." />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="index" href="index.html" />
 </head>
 <body>
-  <header class="header">
+ <!-- ===== Header (fixed) ===== -->
+ <div class="site">
+  <header class="header" role="banner">
     <div class="container header__row">
       <a class="logo" href="index.html" aria-label="Applet home">
         <img class="logo__icon" src="assets/icons.png" alt="" width="24" height="24" />
@@ -27,7 +30,10 @@
           </ul>
         </nav>
       </div>
-      <button class="toggle-theme" aria-label="Theme"><span>☀️</span></button>
+      <label class="theme-toggle" aria-label="Toggle dark mode">
+      <input id="themeSwitch" type="checkbox">
+      <span class="theme-icon" aria-hidden="true"></span>
+    </label>
     </div>
   </header>
 

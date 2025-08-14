@@ -202,7 +202,7 @@ html:has(#themeSwitch:checked){
 .hero__actions{ display:flex; gap:16px; }
 
 .hero__media{
-  border-radius: 28px; overflow:hidden; border:1px solid var(--border);
+  overflow:hidden;
 }
 
 /* ====== Principles ====== */
@@ -233,105 +233,53 @@ html:has(#themeSwitch:checked){
 /* ===== Testimonial Carousel (pure CSS) ===== */
 .testimonial-carousel { position: relative; }
 
-/* Скрываем радио */
-input[name="slider"] {
-  display: none;
+/* СКРЫТЬ реальные радиокнопки (name="slider") */
+input[name="slider"]{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
 }
 
-/* Контейнер слайдов */
-.t-slides {
-  position: relative;
-  min-height: 300px; /* или под свой контент */
+/* Окно слайдов */
+.t-slides{
+  position: relative;        /* база для абсолютного позиционирования точек */
+  min-height: 360px;         /* подгони под высоту карточки */
 }
 
-/* Все слайды поверх друг друга */
-.t-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-/* Активный слайд */
-#t-1:checked ~ .t-slides .s1,
-#t-2:checked ~ .t-slides .s2,
-#t-3:checked ~ .t-slides .s3 {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Точки */
-.t-dots {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 1rem;
-}
-.t-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #a78bfa;
-  opacity: 0.5;
-  cursor: pointer;
-}
-#t-1:checked ~ .t-dots label[for="t-1"],
-#t-2:checked ~ .t-dots label[for="t-2"],
-#t-3:checked ~ .t-dots label[for="t-3"] {
-  background: #fff;
-  opacity: 1;
-}
-
-
-/* скрываем радиокнопки */
-.t-radio { position:absolute; opacity:0; pointer-events:none; }
-
-/* область слайдов */
-.t-slides { position: relative; }
-
-/* каждый слайд поверх, но виден только активный */
+/* Слайды стопкой */
 .t-slide{
   position: absolute; inset: 0;
   opacity: 0; pointer-events: none;
   transition: opacity .35s ease;
 }
 
-/* показываем активный слайд */
+/* Активный слайд */
 #t-1:checked ~ .t-slides .s1,
 #t-2:checked ~ .t-slides .s2,
 #t-3:checked ~ .t-slides .s3{
   opacity: 1; pointer-events: auto; position: relative;
 }
 
-/* стрелки (маленькие “жуки” внизу слева) */
-.t-prev, .t-next{
-  position: absolute; bottom: 18px; left: 18px;
-  width: 18px; height: 18px; margin-right: 10px;
-  background: var(--surface);
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 50%;
-  cursor: pointer;
-  opacity: .9;
-}
-.t-next{ left: 44px; }
-.testimonial { position: relative; } /* чтобы стрелки позиционировались внутри карточки */
-
-/* точки под текстом (как в макете) */
+/* ТОЧКИ: внутри карточки, внизу слева */
 .t-dots{
-  display: flex; gap: 8px; margin-top: 8px;
-  padding-left: 10px; /* чтобы точки были в левой части, как на рефе */
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  z-index: 3;
 }
 .t-dot{
-  width: 8px; height: 8px; border-radius: 999px;
-  background: rgba(255,255,255,.4); cursor: pointer;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #a78bfa; opacity: .5; cursor: pointer;
 }
 
-/* активная точка — меняем прозрачность */
-#t-1:checked ~ .t-dots label:nth-child(1),
-#t-2:checked ~ .t-dots label:nth-child(2),
-#t-3:checked ~ .t-dots label:nth-child(3){
-  background: #fff;
+/* Активная точка — белая */
+#t-1:checked ~ .t-slides .t-dots label[for="t-1"],
+#t-2:checked ~ .t-slides .t-dots label[for="t-2"],
+#t-3:checked ~ .t-slides .t-dots label[for="t-3"]{
+  background: #fff; opacity: 1;
 }
 
 /* респонсив — твой базовый макет уже складывает testimonial в 1 колонку до 992px */
