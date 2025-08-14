@@ -713,21 +713,17 @@ input[name="slider"]{
 
   #primary-menu.nav{
     position: fixed;
-    top: 64px;               /* высота хедера */
-    left: 16px;
-    display: none;
+    top: 72px;               /* высота хедера */
+    left: 0px;
+    right: 0px;
     z-index: 1000;
-
-    padding-right: 64px;     /* место под рейку */
-    background: #fff;        /* белая карточка */
   }
   .nav-toggle:checked ~ #primary-menu{ display:inline-block; }
   
   /* затемнение фона — НЕ перехватывает клики */
   #primary-menu.nav::before{
     content:"";
-    position: fixed; inset: 0;
-    pointer-events: none;     /* ключевое: даёт кликнуть по крестику */
+    pointer-events: none;
     z-index: -1;
   }
   
@@ -735,47 +731,49 @@ input[name="slider"]{
   #primary-menu.nav::after{
     content:"";
     position:absolute; top:0; right:0;
-    width:64px; height:100%;
+    width:70px; height:100%;
     background-color:#53389E;
-  
+
     /* иконки: порядок — LinkedIn, Facebook, GitHub, Sun/Moon */
     background-image:
+      url("assets/Vector.png"), 
       url("assets/Social icon.png"),   /* LinkedIn */
       url("assets/facebook.png"),      /* Facebook */
       url("assets/github_icon.png"),   /* GitHub */
       url("assets/sun.png");           /* Theme */
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    background-size: 24px 24px, 24px 24px, 24px 24px, 24px 24px;
+    background-repeat: no-repeat;
+    background-size: 15px 15px, 15px 15px, 15px 15px, 15px 15px, 15px 15px;
     background-position:
-      center 72px,                     /* сдвинь под себя при желании */
-      center 114px,
-      center 156px,
-      center calc(100% - 16px);
+      center 15px,                     /* сдвинь под себя при желании */
+      center 50px,
+      center 85px,
+      center calc(55% - 16px),
+      center calc(65% - 16px);
   }
 
-  /* пункты списка */
-  #primary-menu > ul > li + li{ margin-top:16px; }
-  #primary-menu > ul a{
-    display:block; padding:8px 0;
-    color:#0f172a; text-decoration:none; font-size:16px; line-height:1.3;
-  }
-  #primary-menu > a:hover{ color:#53389E; }
-  
-  /* переносим существующий тумблер темы внутрь рейки визуально */
   .theme-toggle{
     position: absolute; right: 20px; bottom: 14px; /* внутри фиолетовой полосы */
     display: grid; place-items: center;
   }
   .theme-toggle .theme-icon{
-    width:24px; height:24px; background:#fff;
+    width:30px; height:20px; background:#737272;
     -webkit-mask:url("assets/sun.png") no-repeat center/contain;
             mask:url("assets/sun.png") no-repeat center/contain;
   }
   html:has(#themeSwitch:checked) .theme-toggle .theme-icon{
     -webkit-mask-image:url("assets/moon.png");
             mask-image:url("assets/moon.png");
-  }
+  }  
   
-  /* на всякий: сделаем шапку поверх */
-  .header{ position:relative; z-index:1100; }
+  /* пункты списка */
+  #primary-menu > ul > li + li{ margin-top:16px; }
+  #primary-menu > ul a{
+    position: relative;
+    text-decoration: none;
+    color: #151217;
+  }
+
+  #primary-menu > a:hover{ color:#53389E; }
+  
+  .header{ position:relative; z-index:1100; } 
 } 
