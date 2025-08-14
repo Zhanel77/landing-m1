@@ -9,25 +9,33 @@
 </head>
 <body>
   <!-- ===== Header (fixed) ===== -->
+  <div class="site">
   <header class="header" role="banner">
     <div class="container header__row">
       <a class="logo" href="index.html" aria-label="Applet home">
-        <span class="logo__icon" aria-hidden="true"></span>
+        <img class="logo__icon" src="assets/icons.png" alt="" width="24" height="24" />
         <span>Applet</span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contacts</a></li>
-        </ul>
-      </nav>
-      <button class="toggle-theme" aria-label="Theme"><span>☀️</span></button>
+      <div class="header-right">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="menu-toggle" aria-label="Open menu"></label>
+        <nav id="primary-menu" class="nav" aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+      <label class="theme-toggle" aria-label="Toggle dark mode">
+      <input id="themeSwitch" type="checkbox">
+      <span class="theme-icon" aria-hidden="true"></span>
+    </label>
     </div>
   </header>
 
-  main id="main-content" class="main" tabindex="-1">
+  <main id="main-content" class="main" tabindex="-1">
     <!-- ===== Hero ===== -->
     <section class="hero section container" aria-labelledby="hero-title">
       <div class="hero__grid">
@@ -45,13 +53,239 @@
       </div>
     </section>
 
+    <!-- ===== Principles ===== -->
+    <section id="about" class="section container" aria-labelledby="principles-title">
+      <p class="section__eyebrow">Who we are</p>
+      <h2 id="principles-title" class="section__title">Our Guiding Principles</h2>
+      <p class="section__desc">We focus on what truly matters. Whether shaping workflows, making key decisions, or growing our team, these principles define everything we do.</p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card__icon">🙂</div>
+          <h3 class="card__title">Empower Our Team</h3>
+          <p class="card__text">Recognize what drives our people. Provide the tools and support they need to thrive.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">💜</div>
+          <h3 class="card__title">Support & Elevate Each Other</h3>
+          <p class="card__text">Collaboration over competition. Growth comes from honesty, respect, and shared success.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">✨</div>
+          <h3 class="card__title">Take Pride in Excellence</h3>
+          <p class="card__text">Commit to quality in every project. Deliver nothing but the best—every time.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">👥</div>
+          <h3 class="card__title">Put Customers First</h3>
+          <p class="card__text">Listen, understand, and exceed expectations. Their success is our success.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">📦</div>
+          <h3 class="card__title">Challenge the Impossible</h3>
+          <p class="card__text">Embrace complexity. Ask “What if?” — and turn it into “Why not?”.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">🔎</div>
+          <h3 class="card__title">Master the Details</h3>
+          <p class="card__text">Excellence is in the little things. Every detail counts in building something remarkable.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section container" aria-labelledby="testimonials-title">
+  <h2 id="testimonials-title" class="section__title m0">What our clients say</h2>
+  <p class="section__desc">A few words from partners we’ve helped.</p>
 
-</main>
+  <!-- Радиокнопки -->
+  <input type="radio" name="slider" id="t-1" checked>
+  <input type="radio" name="slider" id="t-2">
+  <input type="radio" name="slider" id="t-3">
+
+  <div class="t-slides">
+    <!-- Slide 1 -->
+    <article class="testimonial t-slide s1" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <div>
+        <div aria-hidden="true">
+          <img src="assets/Stars.png" alt="5 out of 5 stars" height="20">
+        </div>
+        <p class="testimonial__text">Incredible attention to detail and professionalism. Our website turned out better than we imagined!</p>
+        <small>— <strong>Hana Saito</strong>, Marketing Director, BrightWave</small>
+      </div>
+      <figure class="testimonial__media">
+        <img src="assets/image0_0 1.png" alt="Hana Saito portrait">
+      </figure>
+      <label class="t-prev" for="t-3" aria-label="Previous slide"></label>
+      <label class="t-next" for="t-2" aria-label="Next slide"></label>
+    </article>
+
+    <!-- Slide 2 -->
+    <article class="testimonial t-slide s2" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <div>
+        <div aria-hidden="true">
+          <img src="assets/StarsDaniel.png" alt="5 out of 5 stars" height="20">
+        </div>
+        <p class="testimonial__text">Reliable, efficient, and creative. The best experience we've had with a development team.</p>
+        <small>— <strong>Daniel Foster</strong>, Founder, ElevateApps</small>
+      </div>
+      <figure class="testimonial__media">
+        <img src="assets/Daniel.png" alt="Daniel Foster portrait">
+      </figure>
+      <label class="t-prev" for="t-1" aria-label="Previous slide"></label>
+      <label class="t-next" for="t-3" aria-label="Next slide"></label>
+    </article>
+
+    <!-- Slide 3 -->
+    <article class="testimonial t-slide s3" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <div>
+        <div aria-hidden="true">
+          <img src="assets/Stars.png" alt="5 out of 5 stars" height="20">
+        </div>
+        <p class="testimonial__text">Seamless process and outstanding results! The team exceeded expectations at every step.</p>
+        <small>— <strong>Aoife Gallagher</strong>, CTO, NexaTech</small>
+      </div>
+      <figure class="testimonial__media">
+        <img src="assets/Aoife.png" alt="Aoife Gallagher portrait">
+      </figure>
+      <label class="t-prev" for="t-2" aria-label="Previous slide"></label>
+      <label class="t-next" for="t-1" aria-label="Next slide"></label>
+    </article>
+  </div>
+
+  <!-- Точки -->
+  <div class="t-dots" role="tablist" aria-label="Testimonials">
+    <label for="t-1" class="t-dot" role="tab" aria-controls="t-1"></label>
+    <label for="t-2" class="t-dot" role="tab" aria-controls="t-2"></label>
+    <label for="t-3" class="t-dot" role="tab" aria-controls="t-3"></label>
+  </div>
+</section>
 
 
+    <!-- ===== Projects teaser ===== -->
+    <section class="section container projects-teaser" aria-labelledby="projects-title">
+      <p class="section__eyebrow">Latest projects</p>
+      <h2 id="projects-title" class="section__title">Innovations we’re proud of</h2>
+      <p class="section__desc">Explore our portfolio of innovative, tailored solutions delivering exceptional results for our clients.</p>
 
+      <div class="cards">
+        <article class="project-card">
+          <img src="assets/e-commerce.png" alt="E‑commerce Revolution preview"/>
+          <div class="project-card__body">
+            <p class="project-card__meta">Website</p>
+            <a class="project-card__title link-external" href="projects.html">E‑commerce Revolution</a>
+            <p class="project-card__desc">Built a dynamic store with seamless payments and recommendations.</p>
+          </div>
+        </article>
+        <article class="project-card">
+          <img src="assets/edulearn.jpg" alt="EduLearn App preview"/>
+          <div class="project-card__body">
+            <p class="project-card__meta">Application</p>
+            <a class="project-card__title link-external" href="projects.html">EduLearn</a>
+            <p class="project-card__desc">E‑learning platform with video lessons, quizzes, and progress tracking.</p>
+          </div>
+        </article>
+        <article class="project-card">
+          <img src="assets/urban.jpg" alt="Urban Ride Hub preview"/>
+          <div class="project-card__body">
+            <p class="project-card__meta">Website</p>
+            <a class="project-card__title link-external" href="projects.html">Urban Ride Hub</a>
+            <p class="project-card__desc">Bike rental site with real‑time availability and membership management.</p>
+          </div>
+        </article>
+      </div>
 
+      <p class="center" style="margin-top:22px;">
+        <a class="btn btn--primary" href="projects.html">View all projects</a>
+      </p>
+    </section>
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section container faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section__title">Frequently asked questions</h2>
+      <p class="section__desc">Answers to the most common questions about our services and processes.</p>
 
+      <div class="faq__item">
+        <h4>Do you develop both websites and mobile apps?</h4>
+        <p>Yes, we specialize in both websites and mobile applications. Every project is tailored to meet your goals.</p>
+      </div>
+      <div class="faq__item">
+        <h4>How long does it take to develop a project?</h4>
+        <p>Project timelines vary based on scope, but we’ll share a clear plan and milestones after discovery.</p>
+      </div>
+      <div class="faq__item">
+        <h4>What technologies do you use?</h4>
+        <p>We select a modern stack based on the problem — from React and Next.js to native mobile and cloud services.</p>
+      </div>
+      <div class="faq__item">
+        <h4>Do you provide post‑launch support?</h4>
+        <p>Yes, we offer maintenance, monitoring, and iterative improvements after launch.</p>
+      </div>
+      <div class="faq__item">
+        <h4>How do I get a quote?</h4>
+        <p>Send us a brief at <a href="mailto:info@applet.com">info@applet.com</a> and we’ll reply with estimates.</p>
+      </div>
+    </section>
 
-  </body>
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="section container contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section__title">Let’s build something great together</h2>
+      <p class="section__desc">Have a project in mind? Reach out, and let’s bring your ideas to life.</p>
+
+      <div class="grid-4">
+        <div class="contact-card">
+          <div class="card__icon">
+            <img src = "assets/email us.png" alt = ""/>
+          </div>
+          <h3 class="m0">Email us</h3>
+          <p>For inquiries, contact us.</p>
+          <p><a href="mailto:info@applet.com">info@applet.com</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="card__icon">
+            <img src = "assets/chat with us.png" alt = ""/>
+          </div>
+          <h3 class="m0">Chat with us</h3>
+          <p>Get quick replies.</p>
+          <p><a href="mailto:support@applet.com">support@applet.com</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="card__icon">
+            <img src = "assets/visit_us.png" alt = ""/>
+          </div>
+          <h3 class="m0">Visit us</h3>
+          <p>Visit our office HQ.</p>
+          <p><a target="_blank" rel="noopener" href="https://maps.google.com/?q=123+Innovation+Street,+San+Francisco,+CA+94105">123 Innovation Street, San Francisco, CA 94105</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="card__icon">
+            <img src = "assets/call us.png" alt = ""/>
+          </div>
+          <h3 class="m0">Call us</h3>
+          <p>Mon–Fri, 9 AM – 6 PM.</p>
+          <p><a href="tel:+14151234567">+1 (415) 123‑4567</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__row">
+      <small>© 2025 Applet. All rights reserved.</small>
+      <nav aria-label="Social">
+        <a target="_blank" rel="noopener" href="https://x.com"> 
+          <img src = "assets/Vector.png" alt = "" class="link-external"/>
+        </a>
+        <a target="_blank" rel="noopener" href="https://linkedin.com">
+          <img src = "assets/Social icon.png" alt = "" class="link-external"/>
+        </a>
+   
+        <a target="_blank" rel="noopener" href="https://facebook.com">
+          <img src = "assets/facebook.png" alt = "" class="link-external"/>
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://github.com">
+          <img src = "assets/github_icon.png" alt = "" class="link-external"/>
+        </a>
+      </nav>
+    </div>
+  </footer>
+</div>
+</body>
 </html>
