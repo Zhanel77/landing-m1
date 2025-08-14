@@ -632,6 +632,7 @@ input[name="slider"]{
   .section{ padding: 32px 0; }
   .section--tight{ padding: 24px 0; }
 
+
   /* 2) Хедер */
   .header__row{ height: 56px; }
   .logo{ gap: 8px; }
