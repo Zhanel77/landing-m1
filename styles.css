@@ -665,6 +665,7 @@ input[name="slider"]{
     min-height: auto;
     border-radius: 14px;
   }
+  
   .testimonial__body{
     padding: 16px;
     gap: 12px;
