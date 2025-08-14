@@ -471,6 +471,7 @@ input[name="slider"]{
 }
 
 /* ====== FAQ (static content) ====== */
+
 .faq .faq__item {
   padding: 24px 0;
 }
@@ -490,9 +491,7 @@ input[name="slider"]{
   list-style: none;
 }
 
-.faq-item summary{
-  display: none; /* убираем стандартный треугольник */
-}
+
 
 /* Иконка по умолчанию (плюс) */
 .faq-item .icon {
@@ -569,7 +568,7 @@ input[name="slider"]{
   font-size: 0.9em;
 }
 
-.q{
+.q {
   font-weight: bold;
 }
 /* ====== Helpers ====== */
