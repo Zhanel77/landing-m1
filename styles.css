@@ -30,7 +30,7 @@ a:focus, button:focus { outline: 3px solid #a78bfa; outline-offset: 2px; }
 :root {
   --surface: #ffffff;
   --ink: #0f172a;
-  --eyebrow-color: #7c3aed;
+  --eyebrow-color: #6941C6;
 }
 
 
@@ -217,6 +217,19 @@ html:has(#themeSwitch:checked){
   font-size:14px;
   letter-spacing:.12em;
   text-align:center;
+  font-weight: 700;
+}
+.section_contact_us{
+  text-align: left;
+  margin: 10px 0 8px;
+}
+
+.info{
+  font-size: 36px;
+}
+
+.section_text_contact{
+  color: var(--muted); 
 }
 .section__title{ text-align:center; font-size: 36px; margin: 10px 0 8px; }
 .section__desc{ text-align:center; color: var(--muted); max-width: 72ch; margin: 0 auto 36px; }
@@ -254,7 +267,7 @@ html:has(#themeSwitch:checked){
   padding: 40px 40px 56px;                /* как в макете: больше воздуха слева/сверху */
   max-width: 720px;                       /* чтобы строки переносились похожим образом */
 }
-.testimonial__text{ font-size: 26px; line-height: 1.28; margin: 0;}
+.testimonial__text{ font-size: 30px; line-height: 1.28; margin: 0;}
 .testimonial small{ opacity:.9; }
 .testimonial__media { 
   position: relative; 
@@ -310,8 +323,8 @@ input[name="slider"]{
 /* ТОЧКИ: внутри карточки, внизу слева */
 .t-dots{
   position: absolute;
-  left: 40px;
-  bottom: 18px;
+  left: 50px;
+  bottom: 70px;
   display: flex;
   gap: 8px;
   margin: 0;
@@ -340,7 +353,7 @@ input[name="slider"]{
   .testimonial__media{
     height: 260px;                          /* фиксируем высоту превью */
   }
-  .t-dots{ left: 20px; bottom: 16px; }
+  .t-dots{ left: 25px; bottom: 10px; }
 }
 
 /* ====== Projects teaser (Main) ====== */
@@ -394,11 +407,41 @@ input[name="slider"]{
 .faq .faq__item h4{ margin: 0 0 6px; font-size:18px;}
 .faq .faq__item p{ margin:0; color:var(--muted);}
 
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none; /* убираем стандартный треугольник */
+}
+
+/* Иконка по умолчанию (плюс) */
+.faq-item .icon {
+  width: 20px;
+  height: 20px;
+  background: url("assets/Icon\ wrap\(1\).png") no-repeat center / contain;
+  flex-shrink: 0;
+}
+
+/* Когда блок открыт — минус */
+.faq-item[open] .icon {
+  background: url("assets/Icon\ wrap.png") no-repeat center / contain;
+}
+
+
 /* ====== Footer ====== */
 .footer__row {
   display: flex;
   justify-content: space-between; 
   align-items: center;
+  max-width: 1200px;
+  margin:0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.3); /* тонкая полупрозрачная белая линия */
+  padding-top: 20px; /* отступ сверху после линии */
 }
 
 .footer__row nav {
@@ -411,7 +454,20 @@ input[name="slider"]{
   align-items: center;
 }
 
-.footer{ background:#4c1d95; color:#fff; margin-top: 80px; }
+.footer small {
+  font-size: 14px;
+}
+
+.footer nav a {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+.footer nav img {
+  width: 24px;
+  height: 24px;
+}
+.footer{ background:#4c1d95; color:#fff; margin-top: 80px; padding: 30px 0; padding-top: 70px; }
 .footer__row{ display:flex; align-items:center; justify-content:space-between; gap: 12px; height: 72px; }
 .footer a{ opacity:.9; }
 .footer a:hover{ opacity:1; }
