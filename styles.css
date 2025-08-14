@@ -1,0 +1,481 @@
+/* ====== Base / Reset (simple) ====== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+  color: #0f172a; /* slate-900 */
+  background: #ffffff;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+a:focus, button:focus { outline: 3px solid #a78bfa; outline-offset: 2px; }
+
+/* ====== Theme ====== */
+:root{
+  --brand:#7c3aed;         /* primary violet */
+  --brand-600:#6d28d9;
+  --brand-200:#ddd6fe;
+  --ink:#0f172a;
+  --muted:#7c3aed;
+  --card:#f8fafc;
+  --surface:#ffffff;
+  --border:#e2e8f0;
+  --radius:16px;
+  --container: 1200px;     /* content width for 1440 layout */
+}
+
+/* Светлая тема по умолчанию */
+:root {
+  --surface: #ffffff;
+  --ink: #0f172a;
+}
+
+
+/* Когда включён чекбокс — тёмная тема */
+.theme-toggle:checked ~ .site {
+  --surface: #0f172a;
+  --ink: #f8fafc;
+  --muted: #94a3b8;
+  --card: #1e293b;
+  --border: #334155;
+}
+
+body{ 
+  background:var(--surface); 
+  color:var(--ink); 
+}
+
+:root{
+  --brand:#7c3aed;          /* фиолетовый (активная иконка) */
+  --icon-muted:#94a3b8;     /* серая (неактивное состояние) */
+
+  /* светлая тема по умолчанию */
+  --surface:#ffffff;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --card:#f8fafc;
+  --border:#e2e8f0;
+}
+
+/* ===== ОДИН значок: по умолчанию солнце, при клике — луна ===== */
+.theme-toggle{
+  display:inline-flex; align-items:center; cursor:pointer;
+  padding:6px; border-radius:10px; user-select:none;
+}
+.theme-toggle input{ position:absolute; opacity:0; pointer-events:none; }
+
+/* сам значок — красим через background-color + mask-image */
+.theme-icon{
+  width:24px; height:24px; display:inline-block;
+  background-color:var(--brand);                 /* активный цвет */
+  -webkit-mask: url("assets/sun.png") no-repeat center / contain;
+          mask: url("assets/sun.png") no-repeat center / contain; /* СОЛНЦЕ по умолчанию */
+  transition: background-color .2s ease, transform .15s ease, mask-image .2s ease;
+}
+.theme-toggle:hover .theme-icon{ transform:scale(1.06); }
+
+/* при клике превращаемся в ЛУНУ и меняем цвет иконки */
+.theme-toggle input:checked + .theme-icon{
+  background-color:var(--brand);                 /* активная луна фиолетовая */
+  -webkit-mask-image: url("assets/moon.png");
+          mask-image: url("assets/moon.png");    /* ЛУНА */
+}
+
+/* ===== Переключение ТЕМЫ на странице (без JS) через :has() ===== */
+/* когда чекбокс включён — включаем тёмную палитру */
+html:has(#themeSwitch:checked){
+  --surface:#0f172a;
+  --ink:#f8fafc;
+  --muted:#94a3b8;
+  --card:#1e293b;
+  --border:#334155;
+}
+/* На тёмной теме серый тон другой */
+@media (prefers-color-scheme: dark){
+  .theme-toggle .moon{ color:var(--icon-muted-dark); }
+  .theme-toggle input:checked ~ .sun{ color:var(--icon-muted-dark); }
+}
+
+/* ====== Layout ====== */
+.container{
+  width: min(var(--container), calc(100% - 48px));
+  margin-inline: auto;
+}
+.section{ padding: 72px 0; }
+.section--tight{ padding: 56px 0; }
+
+/* ====== Header (Fixed) ====== */
+.header{
+  position: sticky;
+  top: 0; z-index: 50;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: saturate(120%) blur(6px);
+}
+.header__row{ 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  height:72px; 
+}
+.header-right{ 
+  display:flex; 
+  align-items:center; 
+  gap:16px; 
+  position:relative; 
+}
+
+/* Логотип как картинка */
+.logo__icon{
+  display:block;
+  width:24px; height:24px;
+  object-fit:contain;
+  border-radius:0; background:none;
+}
+
+.logo{ display:flex; align-items:center; gap:10px; font-weight:700; }
+
+.nav ul{ display:flex; gap:28px; list-style:none; padding:0; margin:0; }
+.nav-toggle{ position:absolute; opacity:0; pointer-events:none; }
+.nav a { color: var(--ink); }
+.nav a:hover{ color: var(--brand); }
+.toggle-theme{ border:none; background: transparent; cursor:pointer; font-size:20px; }
+
+.menu-toggle{
+  display:none;                 
+  width:36px; height:36px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  cursor:pointer;
+  background:transparent;
+  position:relative;
+}
+.menu-toggle::before{
+  content:"☰";
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  font-size:18px;
+}
+.nav-toggle:checked + .menu-toggle::before{ content:"✕"; }
+
+@media (max-width:768px){
+  .menu-toggle{ display:inline-block; }
+  .nav{
+    display:none;
+    position:absolute; right:16px; top:60px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px; padding:12px 14px;
+    min-width: 200px;
+  }
+  .nav ul{ flex-direction:column; gap:12px; }
+  /* показать меню, когда чекбокс включен */
+  .nav-toggle:checked ~ .nav{ display:block; }
+}
+
+/* ====== Buttons / Links ====== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:48px; padding:0 20px; border-radius:12px; border:1px solid transparent;
+  font-weight:600; cursor:pointer; transition: transform .06s ease, background .2s, color .2s, border-color .2s;
+}
+.btn:active{ transform: translateY(1px) scale(0.99); }
+.btn--primary{ background: var(--brand); color:#fff; }
+.btn--primary:hover{ background: var(--brand-600); }
+.btn--ghost{ background:#fff; border-color: var(--border); color:#111827; }
+.btn--ghost:hover{ border-color: var(--brand-200); color: var(--brand-600); }
+
+.link-external::after{ content:"↗"; display:inline-block; margin-left:.35rem; font-size:.9em;}
+
+/* ====== Hero ====== */
+.hero{ padding-top: 40px; padding-bottom: 40px; }
+.hero__grid{
+  display:grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items:center;
+}
+.hero__title{
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px;
+}
+.hero__lead{ color: var(--muted); max-width: 54ch; margin-bottom: 28px; }
+.hero__actions{ display:flex; gap:16px; }
+
+.hero__media{
+  border-radius: 28px; overflow:hidden; border:1px solid var(--border);
+}
+
+/* ====== Principles ====== */
+.section__eyebrow{ color: var(--muted); font-size: 14px; letter-spacing:.12em; text-align:center; }
+.section__title{ text-align:center; font-size: 36px; margin: 10px 0 8px; }
+.section__desc{ text-align:center; color: var(--muted); max-width: 72ch; margin: 0 auto 36px; }
+.grid-3{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+.card{
+  background: var(--card); border:1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; transition: box-shadow .2s ease, transform .05s ease;
+}
+.card:hover{ box-shadow: 0 6px 28px rgba(2,6,23,.08); transform: translateY(-1px); }
+.card__icon{ width:42px; height:42px; border-radius:12px; background: var(--brand); display:grid; place-items:center; color:#fff; margin-bottom:12px; font-weight:700;}
+.card__title{ font-size:20px; margin: 0 0 8px;}
+.card__text{ color: var(--muted); margin:0; }
+
+/* ====== Testimonials (static) ====== */
+.testimonial{
+  display:grid; grid-template-columns: 1.2fr .9fr; gap:24px; align-items: center;
+  background: #5b21b6; color:#fff; border-radius: 24px; padding: 28px; border: 1px solid rgba(255,255,255,.18);
+}
+.testimonial__text{ font-size: 24px; line-height: 1.3; margin: 12px 0 18px;}
+.testimonial small{ opacity:.9; }
+.testimonial__media{ border-radius: 18px; overflow:hidden; }
+
+/* ===== Testimonial Carousel (pure CSS) ===== */
+.testimonial-carousel { position: relative; }
+
+/* Скрываем радио */
+input[name="slider"] {
+  display: none;
+}
+
+/* Контейнер слайдов */
+.t-slides {
+  position: relative;
+  min-height: 300px; /* или под свой контент */
+}
+
+/* Все слайды поверх друг друга */
+.t-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Активный слайд */
+#t-1:checked ~ .t-slides .s1,
+#t-2:checked ~ .t-slides .s2,
+#t-3:checked ~ .t-slides .s3 {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Точки */
+.t-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.t-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #a78bfa;
+  opacity: 0.5;
+  cursor: pointer;
+}
+#t-1:checked ~ .t-dots label[for="t-1"],
+#t-2:checked ~ .t-dots label[for="t-2"],
+#t-3:checked ~ .t-dots label[for="t-3"] {
+  background: #fff;
+  opacity: 1;
+}
+
+
+/* скрываем радиокнопки */
+.t-radio { position:absolute; opacity:0; pointer-events:none; }
+
+/* область слайдов */
+.t-slides { position: relative; }
+
+/* каждый слайд поверх, но виден только активный */
+.t-slide{
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+}
+
+/* показываем активный слайд */
+#t-1:checked ~ .t-slides .s1,
+#t-2:checked ~ .t-slides .s2,
+#t-3:checked ~ .t-slides .s3{
+  opacity: 1; pointer-events: auto; position: relative;
+}
+
+/* стрелки (маленькие “жуки” внизу слева) */
+.t-prev, .t-next{
+  position: absolute; bottom: 18px; left: 18px;
+  width: 18px; height: 18px; margin-right: 10px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: .9;
+}
+.t-next{ left: 44px; }
+.testimonial { position: relative; } /* чтобы стрелки позиционировались внутри карточки */
+
+/* точки под текстом (как в макете) */
+.t-dots{
+  display: flex; gap: 8px; margin-top: 8px;
+  padding-left: 10px; /* чтобы точки были в левой части, как на рефе */
+}
+.t-dot{
+  width: 8px; height: 8px; border-radius: 999px;
+  background: rgba(255,255,255,.4); cursor: pointer;
+}
+
+/* активная точка — меняем прозрачность */
+#t-1:checked ~ .t-dots label:nth-child(1),
+#t-2:checked ~ .t-dots label:nth-child(2),
+#t-3:checked ~ .t-dots label:nth-child(3){
+  background: #fff;
+}
+
+/* респонсив — твой базовый макет уже складывает testimonial в 1 колонку до 992px */
+@media (max-width: 992px){
+  .t-prev, .t-next { bottom: 16px; left: 16px; }
+  .t-next { left: 42px; }
+}
+
+/* ====== Projects teaser (Main) ====== */
+.projects-teaser .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.project-card{ background: var(--card); border:1px solid var(--border); }
+
+.project-card__body{ padding: 18px; }
+.project-card__meta{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing:.12em; }
+.project-card__title{ font-size: 20px; margin: 6px 0; display:flex; align-items:center; gap:6px; }
+.project-card__desc{ color: var(--muted); font-size: 15px; }
+.project-card a:hover .project-card__title{ color: var(--brand-600); }
+
+/* ====== Contacts ====== */
+.contact .grid-4{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr)); 
+  gap: 24px;
+  align-items: stretch;             
+}
+
+.contact-card{
+  background: var(--card);
+  border: 1px solid var(--border);             
+  padding: 28px;                    
+  min-height: 220px;                 
+  height: 100%;
+  display: flex;                     
+  flex-direction: column;
+  justify-content: space-between;    
+  gap: 10px;
+}
+
+.contact-card a{
+  color: var(--brand-600);
+  text-decoration: underline;
+}
+.contact-card a:hover{
+  color: var(--brand);
+}
+
+/* Адаптив */
+@media (max-width: 992px){
+  .contact .grid-4{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px){
+  .contact .grid-4{ grid-template-columns: 1fr; }
+}
+
+/* ====== FAQ (static content) ====== */
+.faq .faq__item{ border-top:1px solid var(--border); padding: 18px 0; }
+.faq .faq__item h4{ margin: 0 0 6px; font-size:18px;}
+.faq .faq__item p{ margin:0; color:var(--muted);}
+
+/* ====== Footer ====== */
+.footer__row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.footer__row nav {
+  display: flex;
+  gap: 12px; 
+}
+
+.footer__row nav a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer{ background:#4c1d95; color:#fff; margin-top: 80px; }
+.footer__row{ display:flex; align-items:center; justify-content:space-between; gap: 12px; height: 72px; }
+.footer a{ opacity:.9; }
+.footer a:hover{ opacity:1; }
+
+/* ====== Projects page grid ====== */
+.filters{ display:flex; gap: 20px; margin-bottom: 12px; align-items:center; }
+.filter-link{ padding-bottom: 6px; border-bottom: 2px solid transparent; color: var(--muted); }
+.filter-link.is-active{ color: var(--brand-600); border-color: var(--brand-600); }
+.grid-projects{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.badge{ display:inline-block; background:#eef2ff; color:#3730a3; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+.meta-row{ display:flex; gap: 10px; color: var(--muted); font-size: 12px; }
+
+/* ====== Helpers ====== */
+.m0{ margin:0; }
+.center { text-align:center; }
+
+/* NOTE: This layout targets the fixed 1440 design. A full mobile layout is not required per task. */
+/* ====== Dark theme variables ====== */
+[data-theme="dark"] {
+  --surface: #0f172a;
+  --ink: #f8fafc;
+  --muted: #94a3b8;
+  --card: #1e293b;
+  --border: #334155;
+  background-color: var(--surface);
+  color: var(--ink);
+}
+[data-theme="dark"] body {
+  background-color: var(--surface);
+  color: var(--ink);
+}
+[data-theme="dark"] .header {
+  background-color: var(--surface);
+  border-bottom-color: var(--border);
+}
+[data-theme="dark"] .nav a { color: var(--ink); }
+[data-theme="dark"] .nav a:hover { color: var(--brand-200); }
+[data-theme="dark"] .btn--ghost { background: var(--surface); border-color: var(--border); color: var(--ink); }
+[data-theme="dark"] .btn--ghost:hover { border-color: var(--brand-200); color: var(--brand-200); }
+[data-theme="dark"] .card {
+  background: var(--card);
+  border-color: var(--border);
+}
+[data-theme="dark"] .project-card {
+  background: var(--card);
+  border-color: var(--border);
+}
+[data-theme="dark"] .contact-card {
+  background: var(--card);
+  border-color: var(--border);
+}
+[data-theme="dark"] .faq .faq__item { border-top-color: var(--border); }
+[data-theme="dark"] .footer { background: #1e1b4b; color: var(--ink); }
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --surface:#0f172a;
+    --ink:#f8fafc;
+    --muted:#94a3b8;
+    --card:#1e293b;
+    --border:#334155;
+  }
+  body{ background-color:var(--surface); color:var(--ink); }
+  .header{ background-color:var(--surface); border-bottom-color:var(--border); }
+  .nav a{ color:var(--ink); }
+  .btn--ghost{ background:transparent; border-color:var(--border); color:var(--ink); }
+  .card, .project-card, .contact-card{ background:var(--card); border-color:var(--border); }
+  .faq .faq__item{ border-top-color:var(--border); }
+  .footer{ background:#1e1b4b; color:var(--ink); }
+}
