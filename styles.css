@@ -491,13 +491,13 @@ input[name="slider"]{
 .faq-item .icon {
   width: 20px;
   height: 20px;
-  background: url("assets/Icon\ wrap\(1\).png") no-repeat center / contain;
+  background: url("assets/Icon_wrap\(1\).png") no-repeat center / contain;
   flex-shrink: 0;
 }
 
 /* Когда блок открыт — минус */
 .faq-item[open] .icon {
-  background: url("assets/Icon\ wrap.png") no-repeat center / contain;
+  background: url("assets/Icon_wrap.png") no-repeat center / contain;
 }
 
 
@@ -562,7 +562,9 @@ input[name="slider"]{
   font-size: 0.9em;
 }
 
-
+.q{
+  font-weight: bold;
+}
 /* ====== Helpers ====== */
 .m0{ margin:0; }
 .center { text-align:center; }
@@ -766,11 +768,18 @@ input[name="slider"]{
   }  
   
   /* пункты списка */
-  #primary-menu > ul > li + li{ margin-top:16px; }
-  #primary-menu > ul a{
-    position: relative;
-    text-decoration: none;
-    color: #151217;
+  #primary-menu ul li a{
+    color:#151217;
+    text-decoration:none;
+    display:block;
+    padding:8px 0;
+    transition: color .15s ease, background-color .15s ease;
+  }
+  
+  /* 1) Вариант как на макете: фиолетовый ТЕКСТ при наведении */
+  #primary-menu ul li a:hover,
+  #primary-menu ul li a:focus-visible{
+    color:#53389E;
   }
 
   #primary-menu > a:hover{ color:#53389E; }
