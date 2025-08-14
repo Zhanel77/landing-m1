@@ -1,0 +1,179 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Applet — Projects</title>
+  <meta name="description" content="A portfolio of websites and applications we’ve delivered." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="index.html" aria-label="Applet home">
+        <img class="logo__icon" src="assets/icons.png" alt="" width="24" height="24" />
+        <span>Applet</span>
+      </a>
+      <div class="header-right">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="menu-toggle" aria-label="Open menu"></label>
+        <nav id="primary-menu" class="nav" aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+      <button class="toggle-theme" aria-label="Theme"><span>☀️</span></button>
+    </div>
+  </header>
+
+  <main class="section container">
+    <p class="section__eyebrow">Latest projects</p>
+    <h1 class="section__title">Innovations we’re proud of</h1>
+    <p class="section__desc">Explore our portfolio of innovative, tailored solutions delivering exceptional results for our clients.</p>
+
+    <div class="filters" role="tablist" aria-label="Project categories">
+      <a class="filter-link is-active" href="#">View all</a>
+      <a class="filter-link" href="#">Websites</a>
+      <a class="filter-link" href="#">Applications</a>
+    </div>
+
+    <section class="grid-projects" aria-label="Project list">
+      <!-- Repeatable card -->
+      <article class="project-card">
+  <img src="assets/urban.jpg" alt="Urban Ride Hub"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">Urban Ride Hub</h3>
+    <p class="project-card__desc">Created a bike rental site with real-time availability, routes, and membership management</p>
+    <div class="meta-row">
+      <span>3–8 weeks</span> · <span>React Native | AWS</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/fitness.jpg" alt="Project 2 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">Fitness Community</h3>
+    <p class="project-card__desc">Built a vibrant site for fitness enthusiasts with blog integration and workout plans.</p>
+    <div class="meta-row">
+      <span>5 weeks | Django | Member Login</span>
+      <span>30 May 2024</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/e-commerce.png" alt="Project 3 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">E-commerce Revolution</h3>
+    <p class="project-card__desc">E-commerce Revolution: Built a dynamic store with seamless payments and recommendations.</p>
+    <div class="meta-row">
+      <span>6 weeks | Next.js | Stripe AP</span> 
+      <span>18 Jan 2024</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/eventplan.png" alt="Project 4 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Application</span>
+    <h3 class="project-card__title link-external">EventPlanner Pro</h3>
+    <p class="project-card__desc">Built an event app with RSVP tracking, calendar integration, and guest list management.</p>
+    <div class="meta-row">
+      <span>5 months | Flutter | Google Calendar API</span>
+      <span>17 Jan 2023</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/corporate.jpg" alt="Project 5 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">Corporate Branding</h3>
+    <p class="project-card__desc">Built a professional corporate site with customized branding and real-time updates.</p>
+    <div class="meta-row">
+      <span>5 weeks | WordPress | Multilingual Support</span>
+      <span>16 Aug 2022</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/edulearn.jpg" alt="Project 6 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Application</span>
+    <h3 class="project-card__title link-external">EduLearn</h3>
+    <p class="project-card__desc">Designed an e-learning platform featuring video lessons, quizzes, and progress tracking.</p>
+    <div class="meta-row">
+      <span>8 months | React Native | AWS</span>
+      <span>15 Jan 2025</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/tech startup.jpg" alt="Project 7 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">Tech Startup Site</h3>
+    <p class="project-card__desc">Designed a modern and fast-loading website to highlight a new tech startup’s services.</p>
+    <div class="meta-row">
+      <span>4 weeks | Next.js | SEO Optimization</span> 
+      <span>14 Jan 2025</span>
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/portfolio.jpg" alt="Project 8 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Application</span>
+    <h3 class="project-card__title link-external">Portfolio Perfection</h3>
+    <p class="project-card__desc">Designed a stylish, modern portfolio to highlight creative work with elegance and efficiency.</p>
+    <div class="meta-row">
+      <span>2 months | Next.js | Tailwind CSS | GSAP</span>
+      <span>10 Jan 2023</span> 
+    </div>
+  </div>
+</article>
+<article class="project-card">
+  <img src="assets/non-profit.jpg" alt="Project 9 preview"/>
+  <div class="project-card__body">
+    <span class="project-card__meta">Website</span>
+    <h3 class="project-card__title link-external">Non-Profit Impact</h3>
+    <p class="project-card__desc">Launched a fundraising website with integrated donation tracking and volunteer coordination.</p>
+    <div class="meta-row">
+      <span>7 weeks | PHP | Donation Gateway</span>
+      <span>12 Jule 2024</span>
+    </div>
+  </div>
+</article>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__row">
+      <small>© 2025 Applet. All rights reserved.</small>
+      <nav aria-label="Social">
+        <a target="_blank" rel="noopener" href="https://x.com"> 
+          <img src = "assets/Vector.png" alt = "" class="link-external"/>
+        </a>
+        <a target="_blank" rel="noopener" href="https://linkedin.com">
+          <img src = "assets/Social icon.png" alt = "" class="link-external"/>
+        </a>
+   
+        <a target="_blank" rel="noopener" href="https://facebook.com">
+          <img src = "assets/facebook.png" alt = "" class="link-external"/>
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://github.com">
+          <img src = "assets/github_icon.png" alt = "" class="link-external"/>
+        </a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
