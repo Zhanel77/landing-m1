@@ -411,7 +411,7 @@ input[name="slider"]{
 .project-card__body{ padding: 18px; }
 .project-card__meta{ color: #6941C6; font-size: 14px;font-weight: 700; }
 .project-card__title{ font-size: 25px; margin: 6px 0; display:flex; align-items:center; gap:6px;font-weight: 500; }
-.project-card__desc{ color: #535862; font-size: 15px; }
+.project-card__desc{ color: #535862; font-size: 15px;}
 .project-card a:hover .project-card__title{ color: var(--brand-600); }
 
 .section-divider {
@@ -558,7 +558,6 @@ input[name="slider"]{
 .meta-row {
   display: flex;
   flex-direction: column; /* ставим строки вертикально */
-  gap: 4px; /* отступ между ними */
 }
 
 .meta-row span:first-child {
@@ -574,6 +573,7 @@ input[name="slider"]{
 .q {
   font-weight: bold;
 }
+
 /* ====== Helpers ====== */
 .m0{ margin:0; }
 .center { text-align:center; }
