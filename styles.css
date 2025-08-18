@@ -807,7 +807,7 @@ input[name="slider"]{
   #nav-toggle:checked ~ .nav{ opacity:1; transform:translateY(0); pointer-events:auto; }
 
   /* ===== Темная тема (когда на body добавляется .dark) ===== */
-  body.dark .menu-toggle{ color:#e8ebf0; }
+  body.dark .menu-toggle{ color:#111111; }
   body.dark .nav{ background:#0f1216; color:#d7dbe0; box-shadow:0 12px 24px rgba(0,0,0,.35); }
   body.dark .nav__list a:hover{ background:rgba(255,255,255,.06); }
   body.dark .nav__rail{ background:#6234b7; }      /* остаётся фиолетовой */
