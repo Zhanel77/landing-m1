@@ -15,6 +15,7 @@ a:focus, button:focus { outline: 3px solid #a78bfa; outline-offset: 2px; }
 :root{
   --brand:#7c3aed;         /* primary violet */
   --brand-600:#6d28d9;
+  --link: var(--brand-600);
   --brand-200:#ddd6fe;
   --ink:#0f172a;
   --muted:#8d65d4;
@@ -32,11 +33,9 @@ a:focus, button:focus { outline: 3px solid #a78bfa; outline-offset: 2px; }
   --eyebrow-color: #6941C6;
 }
 
-
-
 /* Когда включён чекбокс — тёмная тема */
 .theme-toggle:checked ~ .site {
-  --surface: #0f172a;
+  --surface: #0C0E12;
   --ink: #f8fafc;
   --muted: #94a3b8;
   --card: #1e293b;
@@ -100,6 +99,11 @@ body{
   background-color: var(--brand);
 }
 
+html:has(#themeSwitch:checked) .btn-projects{
+  background-color: #000;
+  color: #fff;
+}
+
 /* когда чекбокс включён — включаем тёмную палитру */
 html:has(#themeSwitch:checked){
   --surface:#0f172a;
@@ -108,6 +112,7 @@ html:has(#themeSwitch:checked){
   --card:#1e293b;
   --border:#334155;
   --eyebrow-color: #9ca3af;
+  --link: var(--ink);
 }
 /* На тёмной теме серый тон другой */
 @media (prefers-color-scheme: dark){
@@ -410,7 +415,7 @@ input[name="slider"]{
 .projects-teaser .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 30px;}
 .project-card{ background: var(--card); }
 
-.project-card__body{ padding: 18px; }
+.project-card__body{ padding: 18px;}
 .project-card__meta{ color: #6941C6; font-size: 14px;font-weight: 700; }
 .project-card__title{ font-size: 25px; margin: 6px 0; display:flex; align-items:center; gap:6px;font-weight: 500; }
 .project-card__desc{ color: #535862; font-size: 15px; margin-bottom: 16px; line-height: 1.5;}
@@ -423,7 +428,6 @@ input[name="slider"]{
   margin: 40px auto;          /* отступы сверху/снизу */
   max-width: 1200px;          /* ширина линии */
 }
-
 
 /* ====== Contacts ====== */
 .contact .grid-4{
@@ -440,7 +444,7 @@ input[name="slider"]{
 }
 
 .contact-card p {
-  color: #535862;
+  color: var(--muted);
   padding: 0px 0px 12px;
   margin: 8px 0px 0px;
 }
@@ -454,13 +458,14 @@ input[name="slider"]{
   flex-direction: column;
   justify-content: space-between;    
   gap: 5px;
+  background-color: #13161B;
 }
 
 .gap{
   gap:8px;
 }
 .contact-card a{
-  color: var(--brand-600);
+  color: var(--link);
   font-weight: 500;
 }
 .contact-card a:hover{
@@ -483,8 +488,8 @@ input[name="slider"]{
 .faq .faq__item:not(:last-child) {
   border-bottom: 1px solid var(--border);
 }
-.faq .faq__item h4{ margin: 0 0 6px; font-size:18px; color: #181D27; font-weight: 410;}
-.faq .faq__item p{ margin:0; color:#535862;}
+.faq .faq__item h4{ margin: 0 0 6px; font-size:18px; color: var(--ink); font-weight: 410;}
+.faq .faq__item p{ margin:0; color: var(--muted);}
 .faq{
   padding-inline: 220px;
 }
@@ -495,7 +500,6 @@ input[name="slider"]{
   cursor: pointer;
   list-style: none;
 }
-
 
 
 /* Иконка по умолчанию (плюс) */
@@ -573,16 +577,26 @@ input[name="slider"]{
   font-size: 0.9em;
 }
 
-.q {
-  color:#000000;
-
+.faq-item .q {
+  color: var(--ink);
 }
+.faq-item summary:hover .q {
+  color: var(--ink);
+}
+
+
+.btn-projects{
+  background-color: #fff;
+  color: #000;
+  border: 2px;
+}
+
 
 /* ====== Helpers ====== */
 .m0{ margin:0; }
 .center { text-align:center; }
 
-/* NOTE: This layout targets the fixed 1440 design. A full mobile layout is not required per task. */
+
 /* ====== Dark theme variables ====== */
 [data-theme="dark"] {
   --surface: #0f172a;
@@ -594,6 +608,13 @@ input[name="slider"]{
   background-color: var(--surface);
   color: var(--ink);
 }
+
+[data-theme="dark"] .btn-projects{
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #444;
+}
+
 [data-theme="dark"] body {
   background-color: var(--surface);
   color: var(--ink);
@@ -618,8 +639,13 @@ input[name="slider"]{
   background: var(--card);
   border-color: var(--border);
 }
+[data-theme="dark"] .contact-card a{
+  color: var(--ink);
+  font-weight: 500;
+}
 [data-theme="dark"] .faq .faq__item { border-top-color: var(--border); }
 [data-theme="dark"] .footer { background: #1e1b4b; color: var(--ink); }
+
 
 @media (prefers-color-scheme: dark){
   :root{
@@ -636,6 +662,10 @@ input[name="slider"]{
   .card, .project-card, .contact-card{ background:var(--card); border-color:var(--border); }
   .faq .faq__item{ border-top-color:var(--border); }
   .footer{ background:#1e1b4b; color:var(--ink); }
+  .contact-card a{
+    color: var(--ink);
+    font-weight: 500;
+  }
 }
 
 /* ==== Mobile layout (iPhone width ~375px) ====*/
