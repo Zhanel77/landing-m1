@@ -99,7 +99,7 @@ body{
 .theme-toggle:hover input:checked + .theme-icon{
   background-color: var(--brand);
 }
-/* ===== Переключение ТЕМЫ на странице (без JS) через :has() ===== */
+
 /* когда чекбокс включён — включаем тёмную палитру */
 html:has(#themeSwitch:checked){
   --surface:#0f172a;
@@ -178,6 +178,9 @@ html:has(#themeSwitch:checked){
   font-size:18px;
 }
 .nav-toggle:checked + .menu-toggle::before{ content:"✕"; }
+
+.nav__wrap { display: flex; }        
+.nav__rail { display: none; }
 
 @media (max-width:768px){
   .menu-toggle{ display:inline-block; }
@@ -716,89 +719,97 @@ input[name="slider"]{
   .footer__row nav{ gap: 10px; }
   .footer nav img{ width: 22px; height: 22px; }
 
-  .header__row{ position: relative; z-index: 5; }
-  .menu-toggle{ display:inline-block; }                /* бургер виден */ 
+ .header{ position: sticky; top:0; z-index:1000; }
+  .header__row{ height:56px; align-items:center; }
+  .header-right{ position:relative; display:flex; align-items:center; gap:8px; }
 
-  #primary-menu.nav{
-    position: fixed;
-    top: 72px;               /* высота хедера */
-    left: 0px;
-    right: 0px;
-    z-index: 1000;
-  }
-  .nav-toggle:checked ~ #primary-menu{ display:inline-block; }
-  
-  /* затемнение фона — НЕ перехватывает клики */
-  #primary-menu.nav::before{
-    content:"";
-    pointer-events: none;
-    z-index: -1;
-  }
-  
-  /* фиолетовая рейка + иконки как мульти-фон */
-  #primary-menu.nav::after{
-    content:"";
-    position:absolute; top:0; right:0;
-    width:70px; height:100%;
-    background-color:#53389E;
-
-    /* иконки: порядок — LinkedIn, Facebook, GitHub, Sun/Moon */
-    background-image:
-      url("assets/Vector.png"), 
-      url("assets/Social icon.png"),   /* LinkedIn */
-      url("assets/facebook.png"),      /* Facebook */
-      url("assets/github_icon.png"),   /* GitHub */
-      url("assets/sun.png");           /* Theme */
-    background-repeat: no-repeat;
-    background-size: 15px 15px, 15px 15px, 15px 15px, 15px 15px, 15px 15px;
-    background-position:
-      center 15px,                     /* сдвинь под себя при желании */
-      center 50px,
-      center 85px,
-      center calc(55% - 16px),
-      center calc(65% - 16px);
+  /* скрытый чекбокс */
+  .nav-toggle{
+    position:absolute; inline-size:1px; block-size:1px; overflow:hidden;
+    clip-path:inset(50%); white-space:nowrap; border:0; padding:0; margin:-1px;
   }
 
-  .theme-toggle{
-    position: absolute; right: 20px; bottom: 14px; /* внутри фиолетовой полосы */
-    display: grid; place-items: center;
+  /* === ГАМБУРГЕР / КРЕСТИК === */
+  .menu-toggle{
+    --size:28px; --bar-h:2px; --bar-r:6px;
+    inline-size:var(--size); block-size:var(--size);
+    position:relative; display:inline-block; cursor:pointer;
+    color:#2b2f36; /* поменяй при необходимости */
   }
-  .theme-toggle .theme-icon{
-    width:30px; height:20px;
-    background:#737272;
-  
-    /* стандартные лонгхэнды */
-    mask-image: url("assets/sun.png");
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
+  .menu-toggle::before,
+  .menu-toggle::after{
+    content:""; position:absolute; left:50%; translate:-50% 0;
+    inline-size:22px; block-size:var(--bar-h);
+    background:currentColor; border-radius:var(--bar-r);
+    transition:transform .25s ease, box-shadow .2s ease, opacity .2s ease;
   }
-  
-  html:has(#themeSwitch:checked) .theme-toggle .theme-icon{
-    mask-image: url("assets/moon.png");
+  .menu-toggle::before{
+    top:50%; translate:-50% -50%;
+    /* верх и низ рисуем тенями */
+    box-shadow:0 -8px 0 0 currentColor, 0 8px 0 0 currentColor;
   }
-  
-  html:has(#themeSwitch:checked) .theme-toggle .theme-icon{
-    mask-image:url("assets/moon.png");
-            mask-image:url("assets/moon.png");
-  }  
-  
-  /* пункты списка */
-  #primary-menu ul li a{
-    color:#151217;
-    text-decoration:none;
-    display:block;
-    padding:8px 0;
-    transition: color .15s ease, background-color .15s ease;
-  }
-  
-  /* 1) Вариант как на макете: фиолетовый ТЕКСТ при наведении */
-  #primary-menu ul li a:hover,
-  #primary-menu ul li a:focus-visible{
-    color:#53389E;
+  .menu-toggle::after{ top:50%; opacity:0; }
+
+  /* === ВЫПАДАЮЩЕЕ МЕНЮ === */
+  .nav{
+    position:absolute; right:16px; top:56px;
+    inline-size:min(92vw, 340px);
+    background:#fff; color:#121417;
+    border-radius:12px; box-shadow:0 12px 24px rgba(0,0,0,.12);
+    opacity:0; pointer-events:none; transform:translateY(-8px);
+    transition:opacity .2s ease, transform .2s ease;
+    overflow:hidden; /* чтобы скругление резало правую рейку */
   }
 
-  #primary-menu > a:hover{ color:#53389E; }
-  
-  .header{ position:relative; z-index:1100; } 
+  /* двухколоночная сетка: контент + правая рейка */
+  .nav__wrap{
+    display:grid; grid-template-columns: 1fr 64px; min-block-size: 380px;
+  }
+
+  /* левая колонка со списком */
+  .nav__list{ list-style:none; margin:0; padding:18px 16px; }
+  .nav__list li{ margin:2px 0; }
+  .nav__list a{
+    display:block; padding:14px 12px; border-radius:8px;
+    text-decoration:none; color:inherit; font-weight:600;
+  }
+  .nav__list a:hover{ background:rgba(0,0,0,.06); }
+
+  /* правая вертикальная рейка */
+  .nav__rail{
+    background:#6234b7; /* фирменный фиолетовый из макета */
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:flex-start; gap:16px; padding:16px 10px;
+  }
+  .nav__rail .rail-link img{
+    inline-size:28px; block-size:28px;
+    /* делаем иконки светлыми, как на референсе */
+    filter: invert(1) brightness(105%);
+  }
+
+  /* тема: один значок, переключается чекбоксом */
+  .theme-toggle{ display:inline-flex; align-items:center; padding:6px; border-radius:10px; cursor:pointer; }
+  .theme-toggle input{ display:none; position:absolute; opacity:0; pointer-events:none; }
+  .theme-icon{
+    inline-size:26px; block-size:26px; display:inline-block;
+    background-color:#fff;                     /* цвет «заливки» маски */
+    mask: url("assets/sun.png") no-repeat center / contain;  /* солнце по умолчанию */
+    transition: transform .15s ease, background-color .2s ease, mask-image .2s ease;
+  }
+  .theme-toggle:hover .theme-icon{ transform:scale(1.06); }
+  .theme-toggle input:checked + .theme-icon{
+    mask: url("assets/moon.png") no-repeat center / contain; /* луна при включении */
+  }
+
+  /* показ меню при чекнутом чекбоксе */
+  #nav-toggle:checked ~ .menu-toggle::before{ box-shadow:none; transform:rotate(45deg); }
+  #nav-toggle:checked ~ .menu-toggle::after{ opacity:1; transform:rotate(-45deg); }
+  #nav-toggle:checked ~ .nav{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+  /* ===== Темная тема (когда на body добавляется .dark) ===== */
+  body.dark .menu-toggle{ color:#e8ebf0; }
+  body.dark .nav{ background:#0f1216; color:#d7dbe0; box-shadow:0 12px 24px rgba(0,0,0,.35); }
+  body.dark .nav__list a:hover{ background:rgba(255,255,255,.06); }
+  body.dark .nav__rail{ background:#6234b7; }      /* остаётся фиолетовой */
+  body.dark .theme-icon{ background-color:#fff; }  /* иконка остаётся светлой */
 } 
