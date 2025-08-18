@@ -795,14 +795,22 @@ input[name="slider"]{
   .theme-toggle{ display:inline-flex; align-items:center; padding:6px; border-radius:10px; cursor:pointer; }
   .theme-toggle input{ display:none; position:absolute; opacity:0; pointer-events:none; }
   .theme-icon{
-    inline-size:26px; block-size:26px; display:inline-block;
-    background-color:#fff;                     /* цвет «заливки» маски */
-    mask: url("assets/sun.png") no-repeat center / contain;  /* солнце по умолчанию */
-    transition: transform .15s ease, background-color .2s ease, mask-image .2s ease;
+    width:24px; 
+    height:24px; 
+    display:inline-block;
+    background-color:var(--icon-muted);                 /* активный цвет */
+    -webkit-mask-image: url("assets/sun.png"); /* СОЛНЦЕ по умолчанию */
+    mask-image: url("assets/sun.png"); /* СОЛНЦЕ по умолчанию */
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    transition: background-color .2s ease, transform .15s ease, mask-image .2s ease;
   }
   .theme-toggle:hover .theme-icon{ transform:scale(1.06); }
   .theme-toggle input:checked + .theme-icon{
-    mask: url("assets/moon.png") no-repeat center / contain; /* луна при включении */
+    background-color:var(--icon-muted);                 /* активная луна фиолетовая */
+    -webkit-mask-image: url("assets/moon.png");
+    mask-image: url("assets/moon.png"); /* ЛУНА */
   }
 
   /* показ меню при чекнутом чекбоксе */
