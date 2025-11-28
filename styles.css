@@ -458,7 +458,7 @@ input[name="slider"]{
   flex-direction: column;
   justify-content: space-between;    
   gap: 5px;
-  background-color: #13161B;
+  background-color: #FAFAFA;
 }
 
 .gap{
