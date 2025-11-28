@@ -4,6 +4,8 @@
 
 Applet is a simple, static landing page built with **HTML** and **CSS**, focusing on creating a visually appealing, semantically structured website that matches the design provided in Figma. This project emphasizes using proper HTML5 semantics, CSS grid/flexbox for layout, and pixel-perfect design implementation. No JavaScript is required.
 
+***Use Figma Design https://www.figma.com/design/3Pi8gnNDhNHt2HzcpqM1hs/***
+
 ## Learning Objectives
 
 - **HTML fundamentals**: Learn how to build websites with semantic HTML tags.
@@ -79,7 +81,7 @@ applet-landing/
 ### 1. **Setting Up**:
    - Clone this repository:
      ```bash
-     git clone https://github.com/your-username/applet-landing.git
+     git clone https://github.com/Zhanel77/applet-landing.git
      ```
    - Open `index.html` in your preferred browser.
 
@@ -100,7 +102,16 @@ applet-landing/
 ### 3. **Theme Toggle (Optional)**:
    - The sun/moon icons for toggling between light and dark mode are already integrated in the navigation bar. Implement them using the provided icons.
 
-### 4. **Validation**:
+
+### 4. Screenshots
+***Main page (1440)***
+![Main page](image.png)
+***FAQ***
+![My Photo](image-1.png)
+***Projects Page (1440)***
+![My Photo](image-2.png)
+
+### 5. **Validation**:
    - Use the **W3C Validator** to ensure your HTML and CSS pass the official validation tests.
 
 ## How to Validate
@@ -115,3 +126,8 @@ applet-landing/
 ## Conclusion
 
 By completing this project, you will have gained practical experience in creating a professional, responsive website using only **HTML** and **CSS**, while following best practices like **semantic HTML**, **CSS Grid/Flexbox**, and **responsive design principles**. Additionally, you will become familiar with common frontend development tools like **Chrome DevTools** and **W3C Validators**.
+
+## Author 
+- Zhanel Kuandyk
+
+- Alem Project
